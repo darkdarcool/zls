@@ -124,9 +124,9 @@ fn hoverSymbolRecursive(
     const writer = hover_text.writer();
     if (markup_kind == .markdown) {
         if (is_fn) {
-            try writer.print("```zig\n{s}\n___```", .{def_str});
+            try writer.print("```zig\n{s}\n___ WOW IS_FN 127```", .{def_str});
         } else {
-            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n___```", .{ def_str, resolved_type_str });
+            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n___ WOW NOT_FN 129```", .{ def_str, resolved_type_str });
         }
         for (doc_strings.items) |doc|
             try writer.print("\n\n{s}", .{doc});
@@ -242,6 +242,7 @@ fn hoverDefinitionBuiltin(
                 \\{s}
                 \\```
                 \\{s}
+                \\idefk 245
             , .{ builtin.signature, builtin.documentation });
         },
     }
