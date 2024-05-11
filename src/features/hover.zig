@@ -124,9 +124,12 @@ fn hoverSymbolRecursive(
     const writer = hover_text.writer();
     if (markup_kind == .markdown) {
         if (is_fn) {
-            try writer.print("```zig\n{s}\n```\n---", .{def_str});
+            try writer.print("```zig\n{s}\n```", .{def_str});
         } else {
-            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n```\n---", .{ def_str, resolved_type_str });
+            try writer.print("```zig\n{s}\n```\n```zig\n({s})\n```", .{ def_str, resolved_type_str });
+        }
+        if (doc_strings.items.len > 0) {
+            try writer.print("\n---", .{});
         }
         for (doc_strings.items) |doc|
             try writer.print("\n\n{s}", .{doc});
